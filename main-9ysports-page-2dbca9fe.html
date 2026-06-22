@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>九游体育 · 信息导览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f7fa;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .hero {
+            background: #0f172a;
+            background-image: radial-gradient(circle at 20% 30%, #1e293b 0%, #0b1321 100%);
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3rem 2rem 2.5rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid #2d3a4b;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: #e2e8f0;
+            margin-bottom: 0.9rem;
+        }
+
+        .hero .tagline {
+            font-size: 1rem;
+            color: #94a3b8;
+            max-width: 640px;
+            margin: 0 auto;
+            font-weight: 300;
+            border-top: 1px solid #334155;
+            padding-top: 1rem;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+
+        .intro-block {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+            padding: 2rem 2.2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e9edf2;
+        }
+
+        .intro-block p {
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        .intro-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        .query-scene {
+            background: #f1f5f9;
+            border-radius: 20px;
+            padding: 1.8rem 2.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .query-scene h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .query-scene h2::before {
+            content: "🔎";
+            font-size: 1.1rem;
+        }
+
+        .scene-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .scene-card {
+            background: white;
+            padding: 1rem 1.2rem;
+            border-radius: 16px;
+            border-left: 4px solid #2563eb;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .scene-card strong {
+            display: block;
+            font-weight: 500;
+            color: #0f172a;
+            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
+        }
+
+        .scene-card span {
+            font-size: 0.9rem;
+            color: #475569;
+        }
+
+        .feature-list {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 2.2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e9edf2;
+        }
+
+        .feature-list h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+            color: #0f172a;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 0.9rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px dashed #dee4ec;
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .feature-icon {
+            font-size: 1.2rem;
+            min-width: 1.8rem;
+            color: #2563eb;
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-content h3 {
+            font-weight: 500;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+            color: #0f172a;
+        }
+
+        .feature-content p {
+            font-size: 0.9rem;
+            color: #475569;
+        }
+
+        .soft-end {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 1.8rem 2.2rem;
+            border: 1px solid #e9edf2;
+            margin-bottom: 2rem;
+            font-style: normal;
+        }
+
+        .soft-end p {
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .soft-end p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.6rem 2.2rem;
+            border: 1px solid #e9edf2;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .faq-mini h3 {
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+
+        .faq-item {
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-q {
+            font-weight: 500;
+            color: #1e293b;
+            font-size: 0.95rem;
+        }
+
+        .faq-a {
+            font-size: 0.9rem;
+            color: #475569;
+            margin-top: 0.2rem;
+        }
+
+        a {
+            color: #2563eb;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        a:hover {
+            border-bottom-color: #2563eb;
+            color: #1d4ed8;
+        }
+
+        .footer-note {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.85rem;
+            padding: 1.2rem 0 2rem 0;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 680px) {
+            .hero h1 { font-size: 1.8rem; }
+            .hero .tagline { font-size: 0.9rem; }
+            .container { padding: 1.5rem 1rem; }
+            .intro-block { padding: 1.5rem; }
+            .query-scene { padding: 1.3rem; }
+            .scene-grid { grid-template-columns: 1fr; }
+            .feature-list { padding: 1.3rem; }
+            .soft-end { padding: 1.3rem; }
+            .faq-mini { padding: 1.2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero { min-height: 240px; padding: 2rem 1rem; }
+            .hero h1 { font-size: 1.5rem; }
+            .hero .tagline { font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <h1>九游体育 · 信息索引</h1>
+        <div class="tagline">从日常查询到对照延伸，一份安静的阅读笔记</div>
+    </header>
+
+    <main class="container">
+        <!-- 开场短句 · 介绍性段落 -->
+        <div class="intro-block">
+            <p>在日常浏览中，我们常常需要快速定位某个体育资讯、赛事回顾或实时数据。面对信息碎片，建立一条清晰的索引路径尤为重要。这也是很多人将 <a href="https://main-9ysports.com">九游体育</a> 作为参考站点的原因——它提供了一种结构化的信息呈现方式，便于读者根据自己的关注点进行查阅与比对。</p>
+            <p>无论是检查联赛排名、了解球队近况，还是回顾历史交锋，一个可靠的信息入口能节省大量梳理时间。从某种角度看，这就像在书架上固定放置某一类书籍：知道它在哪里，需要时便可以径直取用。</p>
+        </div>
+
+        <!-- 承接段落：日常查询与对照 -->
+        <div class="query-scene">
+            <h2>日常查询与对照场景</h2>
+            <div class="scene-grid">
+                <div class="scene-card">
+                    <strong>⚽ 联赛动态</strong>
+                    <span>快速浏览积分变化、赛程调整以及近期焦点战报，适合赛前准备或赛后复盘。</span>
+                </div>
+                <div class="scene-card">
+                    <strong>🏀 球队数据</strong>
+                    <span>查看阵容名单、核心球员出场时间与效率，辅助理解战术轮换逻辑。</span>
+                </div>
+                <div class="scene-card">
+                    <strong>📋 资讯归档</strong>
+                    <span>将零散的新闻、评论与官方公告归拢到同一个时间线下，方便对照不同来源的表述。</span>
+                </div>
+                <div class="scene-card">
+                    <strong>🧭 延伸阅读</strong>
+                    <span>当某一话题引发兴趣时，可依据页面内的关联内容顺藤摸瓜，探索更多背景信息。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 特点列表（知识型，不夸大） -->
+        <div class="feature-list">
+            <h2>信息呈现特点</h2>
+            <div class="feature-item">
+                <div class="feature-icon">📌</div>
+                <div class="feature-content">
+                    <h3>板块分类清晰</h3>
+                    <p>按赛事、球队、数据、新闻等维度组织内容，降低信息检索时的认知负担。</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">⏳</div>
+                <div class="feature-content">
+                    <h3>时效与回顾并重</h3>
+                    <p>既展示当下动态，也保留历史记录，便于进行趋势对比或查找过往节点。</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔗</div>
+                <div class="feature-content">
+                    <h3>内部引用与关联</h3>
+                    <p>页面之间通过上下文链接形成阅读网络，适合顺着思路逐步深入。</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📄</div>
+                <div class="feature-content">
+                    <h3>克制的信息密度</h3>
+                    <p>版面以可读性优先，避免过度堆砌，帮助读者维持注意力焦点。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 温和结尾，自然嵌入链接 -->
+        <div class="soft-end">
+            <p>在信息获取方式多样的今天，选择一两个稳定的参考源，能让日常查阅变得更加从容。不妨将 <a href="https://main-9ysports.com">九游体育</a> 作为其中一个站点，结合自己的习惯，慢慢梳理出属于自己的阅读路径。</p>
+            <p>无论是赛前浏览、赛后对照，还是无目的的延伸阅读，保持一种安静而持续的接触，往往比一次性大量吸收更有余裕。也希望这份简短的介绍，能为你提供一点思路上的参照。</p>
+        </div>
+
+        <!-- FAQ摘要（轻量，非重复章节） -->
+        <div class="faq-mini">
+            <h3>常见问题速览</h3>
+            <div class="faq-item">
+                <div class="faq-q">Q：该站点主要覆盖哪些体育类型？</div>
+                <div class="faq-a">A：以主流团队项目及个人赛事为主，具体范围可进入站内按分类查看。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Q：数据更新频率大概如何？</div>
+                <div class="faq-a">A：重要赛事期间保持同步更新，常规时段每日刷新，建议以页面标注时间为准。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Q：是否提供历史赛季的对比功能？</div>
+                <div class="faq-a">A：部分板块支持跨赛季数据切换，可通过筛选栏调整时间范围。</div>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            本页为信息索引介绍，内容仅供阅读参考。
+        </div>
+    </main>
+</body>
+</html>
